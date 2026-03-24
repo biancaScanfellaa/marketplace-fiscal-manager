@@ -1,4 +1,4 @@
-## O que é o Marketplace Fiscal Manager [Breve]:
+## O que é o Marketplace Fiscal Manager:
 
 O Marketplace Fiscal Manager foi desenvolvido com o objetivo de trazer mais controle, automação e eficiência para a gestão de notas fiscais em operações de e-commerce.
 
@@ -6,7 +6,7 @@ A aplicação centraliza dados de pedidos provenientes de marketplaces como Shop
 
 ---
 
-## O que nos motivou a desenvolver o Marketplace Fiscal Manager:
+## O que motivou a desenvolver o Marketplace Fiscal Manager:
 
 A necessidade surgiu a partir das dificuldades enfrentadas por vendedores em marketplaces na gestão manual de notas fiscais, frequentemente sujeita a erros, retrabalho e falta de controle.
 
