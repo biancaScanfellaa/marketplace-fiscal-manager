@@ -29,7 +29,9 @@ Observamos a ausência de soluções simples e eficientes que integrassem difere
 * Identificação de inconsistências fiscais
 * Correção de dados com registro de histórico
 * Geração de relatórios e métricas operacionais
-* Interface responsiva para diferentes dispositivosUsuário]
+* Interface responsiva para diferentes dispositivos
+
+[Usuário]
    |
    |----> Cadastrar conta
    |----> Fazer login
