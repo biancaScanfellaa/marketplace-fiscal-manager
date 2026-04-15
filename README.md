@@ -29,4 +29,92 @@ Observamos a ausência de soluções simples e eficientes que integrassem difere
 * Identificação de inconsistências fiscais
 * Correção de dados com registro de histórico
 * Geração de relatórios e métricas operacionais
-* Interface responsiva para diferentes dispositivos
+* Interface responsiva para diferentes dispositivosUsuário]
+   |
+   |----> Cadastrar conta
+   |----> Fazer login
+   |----> Conectar APIs (Shopee/Mercado Livre)
+   |----> Visualizar dashboard
+   |----> Consultar notas fiscais
+   |----> Ver erros fiscais
+   |----> Corrigir inconsistências
+   |----> Gerar relatório mensal
+
+[Responsável CNPJ]
+   |
+   |----> Fazer login (restrito)
+   |----> Consultar impostos
+   |----> Ver divergências
+
+[Sistema]
+   |
+   |----> Importar pedidos (API)
+   |----> Analisar notas automaticamente
+   |----> Identificar erros
+   |----> Gerar relatóriosUsuário]
+   |
+   |----> Cadastrar conta
+   |----> Fazer login
+   |----> Conectar APIs (Shopee/Mercado Livre)
+   |----> Visualizar dashboard
+   |----> Consultar notas fiscais
+   |----> Ver erros fiscais
+   |----> Corrigir inconsistências
+   |----> Gerar relatório mensal
+
+[Responsável CNPJ]
+   |
+   |----> Fazer login (restrito)
+   |----> Consultar impostos
+   |----> Ver divergências
+
+[Sistema]
+   |
+   |----> Importar pedidos (API)
+   |----> Analisar notas automaticamente
+   |----> Identificar erros
+   |----> Gerar relatóriosUsuário]
+   |
+   |----> Cadastrar conta
+   |----> Fazer login
+   |----> Conectar APIs (Shopee/Mercado Livre)
+   |----> Visualizar dashboard
+   |----> Consultar notas fiscais
+   |----> Ver erros fiscais
+   |----> Corrigir inconsistências
+   |----> Gerar relatório mensal
+
+[Responsável CNPJ]
+   |
+   |----> Fazer login (restrito)
+   |----> Consultar impostos
+   |----> Ver divergências
+
+[Sistema]
+   |
+   |----> Importar pedidos (API)
+   |----> Analisar notas automaticamente
+   |----> Identificar erros
+   |----> Gerar relatóriosUsuário]
+   |
+   |----> Cadastrar conta
+   |----> Fazer login
+   |----> Conectar APIs (Shopee/Mercado Livre)
+   |----> Visualizar dashboard
+   |----> Consultar notas fiscais
+   |----> Ver erros fiscais
+   |----> Corrigir inconsistências
+   |----> Gerar relatório mensal
+
+[Responsável CNPJ]
+   |
+   |----> Fazer login (restrito)
+   |----> Consultar impostos
+   |----> Ver divergências
+
+[Sistema]
+   |
+   |----> Importar pedidos (API)
+   |----> Analisar notas automaticamente
+   |----> Identificar erros
+   |----> Gerar relatórios
