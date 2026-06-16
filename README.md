@@ -13,7 +13,7 @@ A necessidade surgiu a partir das dificuldades enfrentadas por vendedores em mar
 Observamos a ausência de soluções simples e eficientes que integrassem diferentes plataformas e automatizassem processos fiscais, o que motivou o desenvolvimento de uma aplicação focada em organização, precisão e produtividade.
 
 ---
-## 🚧 Status do Projeto
+## Status do Projeto
 
 *Status:* Em desenvolvimento
 
@@ -166,5 +166,90 @@ RNF16 – O sistema deve permitir crescimento de dados sem perda de desempenho.
    |----> Ver erros fiscais
    |----> Corrigir inconsistências
    |----> Gerar relatório mensal
+------------------------------------------------------------------------------------------------
+sequenceDiagram
+    autonumber
+    actor Resp as Responsável CNPJ
+    participant Mobile as App Mobile
+    participant API as Backend (Manager API)
+    participant DB as Banco de Dados
 
+    Resp->>Mobile: Insere credenciais e faz Login
+    Mobile->>API: POST /api/auth/login-mobile (Email, Senha)
+    
+    API->>API: Verifica restrição de horário de acesso
+    alt Horário Não Permitido
+        API-->>Mobile: Retorna Erro 403 (Acesso bloqueado por horário)
+        Mobile-->>Resp: Exibe mensagem de bloqueio temporário
+    else Horário Permitido
+        API->>DB: Valida credenciais e perfil de usuário
+        DB-->>API: Usuário válido (Perfil: Responsável)
+        API-->>Mobile: Retorna JWT Token + Permissões de escopo
+        Mobile-->>Resp: Redireciona para o Dashboard Mobile
+    end
 
+    Resp->>Mobile: Solicita resumo de divergências
+    Mobile->>API: GET /api/dashboards/resumo-fiscal (Headers: Bearer JWT)
+    API->>DB: Consolida métricas de impostos e divergências
+    DB-->>API: Retorna dados agregados
+    API-->>Mobile: Envia payload JSON consolidado
+    Mobile-->>Resp: Renderiza gráficos de análise fiscal
+    -----------------------------------------------------------------------------------
+    Cards do Dashboard
+    📦 Total de Pedidos📄 Notas Emitidas> ### 1,250RF06 
+    • Total de pedidos importados integrados com Shopee e Mercado Livre.> ### 1,180RF07 
+    • Notas fiscais geradas e validadas com sucesso no período.Status: 🟢 Atualizado em tempo realStatus: 🟢 Sincronizado
+    ⚠️ Notas com Erro⚖️ Divergência de Impostos> ### 42RF08
+    • Notas retidas ou com inconsistências de dados cadastrais.> ### R$ 1.450,20RF09 
+    • Diferença identificada entre o imposto calculado vs. esperado.Status: 🔴 Requer AtençãoStatus: 🟡 Em Análise
+    -----------------------------------------------------------------------------------------------------------------------
+    Histórias de Usuário
+    
+US01 — Sincronização Automática de Vendas
+Como Vendedor de Marketplace (Shopee/Mercado Livre);
+Eu quero que o sistema importe meus pedidos automaticamente através de API,
+Para que eu não precise consolidar os dados manualmente e evite erros de digitação.
+
+Critérios de Aceite:
+
+[ ] O sistema deve permitir salvar os tokens/keys de integração de forma segura.
+[ ] A sincronização automática deve rodar em segundo plano periodicamente.
+[ ] Caso a API do marketplace falhe, o sistema deve registrar o erro e tentar novamente mais tarde (RNF13).
+[ ] Os pedidos importados devem aparecer imediatamente na listagem do Dashboard.
+
+US02 — Identificação e Correção de Divergências Fiscais
+Como Analista Fiscal/Vendedor;
+Eu quero que o sistema destaque as notas fiscais que possuem erros de impostos ou dados incorretos,
+Para que eu possa corrigi-las rapidamente antes de gerar prejuízos ou multas.
+
+Critérios de Aceite:
+
+[ ] O sistema deve calcular automaticamente o imposto esperado com base nas regras cadastradas.
+[ ] Notas com divergência entre o valor calculado e o importado devem receber o status "Erro Fiscal" e uma cor de destaque (ex: vermelho).
+[ ] Ao corrigir a nota, o sistema deve recalcular os valores em tempo real.
+[ ] Toda alteração manual deve salvar um registro com o usuário, data, hora e dado antigo na tabela de Histórico (RNF15).
+
+US03 — Acesso Gerencial Restrito (Mobile)
+Como Responsável Legal pelo CNPJ;
+Eu quero acessar um resumo de impostos e divergências pelo meu celular em horários controlados,
+Para que eu possa acompanhar a saúde fiscal da empresa com segurança e privacidade.
+
+Critérios de Aceite:
+
+[ ] O aplicativo mobile deve restringir o login apenas para usuários com perfil de "Responsável CNPJ".
+[ ] A tela mobile deve ser simplificada, exibindo apenas os cards de totalizador de impostos (pagos/pendentes) e gráficos de divergências.
+[ ] Se o usuário tentar acessar o aplicativo fora do horário configurado, o sistema deve bloquear o acesso com uma mensagem amigável (RNF11).
+
+US04 — Autenticação e Segurança de Dados
+Como Administrador do Sistema / Empresa;
+Eu quero que minhas credenciais de marketplace e senhas sejam criptografadas,
+Para que dados sensíveis do meu faturamento não fiquem expostos a acessos não autorizados.
+
+Critérios de Aceite:
+[ ] As senhas dos usuários devem usar criptografia forte (ex: Bcrypt) antes de irem para o banco de dados.
+[ ] Tokens e chaves de API dos marketplaces devem ser armazenados criptografados.
+[ ] Toda requisição entre Frontend e Backend deve exigir um token JWT válido no cabeçalho (RNF02).
+---------------------------------------------------------------------------------------------------------------------------------------
+Protótipos das Telas
+
+<img width="1408" height="768" alt="telas_projeto" src="https://github.com/user-attachments/assets/c3110e01-2679-40a8-bf30-0071137bc15e" />
